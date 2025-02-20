@@ -57,7 +57,19 @@
         }
     });
 
-
+    document.getElementById('getSongById').addEventListener('click', () => {
+        const songId = prompt("Enter the ID of the Song you want to get :");
+        if (songId) {
+            fetch(`http://localhost:3000/api/getSongById/${songId}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('results').textContent = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    document.getElementById('results').textContent = `Error: ${error}`;
+                });
+        }
+    });
     </script>
 
 </body>
