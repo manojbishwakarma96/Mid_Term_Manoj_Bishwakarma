@@ -2,8 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const fs = require("fs");
 
-const Song = require("./models/songs"); // Import the Mongoose model
-
+const Song = require("./models/songs");
 const PORT = 3000;
 const app = express();
 
@@ -24,7 +23,6 @@ mongoose
     Song.insertMany(songsData)
       .then(() => {
         console.log("Songs imported successfully");
-        // Close the connection after import
         mongoose.connection.close();
       })
       .catch((err) => {
