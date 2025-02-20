@@ -40,6 +40,24 @@
 
         // This includes fetching data from the REST API and handling the responses.
 
+
+    document.getElementById("getAllSongs").addEventListener("click", async () => {
+        try {
+            const response = await fetch("http://localhost:3000/api/getAllSongs");
+
+            // if the response is ok (status 200-299)
+            if (!response.ok) {
+                throw new Error("Failed to fetch songs");
+            }
+
+            const songs = await response.json(); 
+            document.getElementById("results").textContent = JSON.stringify(songs, null, 2); // Display results
+        } catch (error) {
+            document.getElementById("results").textContent = `Error: ${error.message}`;
+        }
+    });
+
+
     </script>
 
 </body>

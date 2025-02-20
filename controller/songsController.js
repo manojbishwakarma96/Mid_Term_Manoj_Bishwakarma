@@ -2,7 +2,6 @@ const { get } = require("mongoose");
 const Song = require("../models/songs");
 
 //get all songs
-
 const getAllSongs = async (req, res) => {
   try {
     const songs = await Song.find();
