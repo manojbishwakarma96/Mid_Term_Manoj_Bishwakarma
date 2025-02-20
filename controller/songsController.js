@@ -31,7 +31,29 @@ const getSongById = async (req, res) => {
   }
 };
 
+//getSongsByArtists
+
+const getSongsByArtists = async (req, res) => {
+  const { artistName } = req.params;
+
+  try {
+    const songs = await Song.find({ "artistData.name": artistName });
+
+    if (songs.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No songs found for this artist" });
+    }
+    return res.json(songs);
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: `Error getting songs by artist: ${error}` });
+  }
+};
+
 module.exports = {
   getAllSongs,
   getSongById,
+  getSongsByArtists,
 };

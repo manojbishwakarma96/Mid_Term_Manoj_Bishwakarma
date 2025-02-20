@@ -8,4 +8,7 @@ router.get("/getAllSongs", getAllSongs);
 // Route to get song by songId
 router.get("/getSongById/:songId", getSongById);
 
+//Route to get song by artist
+router.get("getSongByArtist/:artist.name", ge);
+
 module.exports = router;
