@@ -41,7 +41,8 @@
         // This includes fetching data from the REST API and handling the responses.
 
 
-    document.getElementById("getAllSongs").addEventListener("click", async () => {
+        // Function to fetch getAllSongs 
+   document.getElementById("getAllSongs").addEventListener("click", async () => {
         try {
             const response = await fetch("http://localhost:3000/api/getAllSongs");
 
@@ -56,6 +57,7 @@
             document.getElementById("results").textContent = `Error: ${error.message}`;
         }
     });
+        // Function to fetch songs by songId
 
     document.getElementById('getSongById').addEventListener('click', () => {
         const songId = prompt("Enter the ID of the Song you want to get :");
@@ -70,10 +72,31 @@
                 });
         }
     });
+
+     // Function to fetch songs by artist
+        document.getElementById("getSongsByArtist").addEventListener("click", async () => {
+            const artistName = prompt("Enter the artist name to get songs:");
+            if (artistName) {
+                try {
+                    const response = await fetch(`http://localhost:3000/api/getSongsByArtist/${artistName}`);
+
+                    // Check if the response is successful
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch songs by artist");
+                    }
+
+                    const data = await response.json();
+                    document.getElementById("results").textContent = JSON.stringify(data, null, 2);
+                } catch (error) {
+                    document.getElementById("results").textContent = `Error: ${error.message}`;
+                }
+            } else {
+                alert("Artist name is required.");
+            }
+        });
+
     </script>
-
 </body>
-
 </html>
 
 ​
