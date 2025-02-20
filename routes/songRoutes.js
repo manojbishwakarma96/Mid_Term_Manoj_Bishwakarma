@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { getAllSongs, getSongById } = require("../controller/songsController");
+const {
+  getAllSongs,
+  getSongById,
+  getSongsByArtists,
+} = require("../controller/songsController");
 
 // Route to get all songs
 router.get("/getAllSongs", getAllSongs);
@@ -9,6 +13,6 @@ router.get("/getAllSongs", getAllSongs);
 router.get("/getSongById/:songId", getSongById);
 
 //Route to get song by artist
-router.get("getSongByArtist/:artist.name", ge);
+router.get("/getSongsByArtist/:artistName", getSongsByArtists);
 
 module.exports = router;
